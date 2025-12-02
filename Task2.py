@@ -2,7 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.sparse.linalg import svds
-from mpl_toolkits.mplot3d import Axes3D
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 1000)
 
 ratings = pd.read_csv('ratings.csv')
 movies = pd.read_csv('movies.csv')
@@ -11,8 +12,8 @@ ratings_matrix = ratings.pivot(index='userId', columns='movieId', values='rating
 
 print(f"Data before filtering:\n{ratings_matrix}\n")
 
-ratings_filtered_matrix = ratings_matrix.dropna(thresh = 30, axis = 0)
-ratings_filtered_matrix = ratings_filtered_matrix.dropna(thresh = 20, axis = 1)
+ratings_filtered_matrix = ratings_matrix.dropna(thresh = 100, axis = 0)
+ratings_filtered_matrix = ratings_filtered_matrix.dropna(thresh = 100, axis = 1)
 
 print(f"Data after filtering:\n{ratings_filtered_matrix}\n")
 
